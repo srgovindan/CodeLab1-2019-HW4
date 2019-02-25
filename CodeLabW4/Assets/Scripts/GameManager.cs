@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
@@ -56,19 +57,12 @@ public class GameManager : MonoBehaviour
             {
                 highScore = value;
                 HighScoreText.text = "High Score: " + highScore;
-                PlayerPrefs.SetInt(PLAYER_PREF_HIGHSCORE,HighScore);
+                //PlayerPrefs.SetInt(PLAYER_PREF_HIGHSCORE,HighScore);
 
-//                string fullPathToFile = Application.dataPath + FILE_HIGH_SCORE;
-//                
-//                if (File.Exists(fullPathToFile))
-//                {
-//                    File.WriteAllText(fullPathToFile,"High Score: " + HighScore);
-//                    Debug.Log("The save file exists!");
-//                }
-//                else
-//                {
-//                    Debug.Log("The save file don't exist, yo.");
-//                }
+                string fullPathToFile = Application.dataPath + FILE_HIGH_SCORE;
+                
+                File.WriteAllText(fullPathToFile,"High Score: " + HighScore);
+                Debug.Log("The save file exists!");
             }
         }
     }
@@ -89,10 +83,12 @@ public class GameManager : MonoBehaviour
         }
 
         Score = 0;
-        HighScore = PlayerPrefs.GetInt(PLAYER_PREF_HIGHSCORE,10);
+        //HighScore = PlayerPrefs.GetInt(PLAYER_PREF_HIGHSCORE,10);
         
-        string fullPathToFile = Application.dataPath + FILE_HIGH_SCORE;
-        File.ReadAllText(fullPathToFile);
+        string highScoreFileText = File.ReadAllText(Application.dataPath + FILE_HIGH_SCORE);
+        string[] scoreSplit = highScoreFileText.Split(' ');
+        //Debug.Log(scoreSplit[2]);
+        HighScore = Int32.Parse(scoreSplit[2]);
     }
 
 
