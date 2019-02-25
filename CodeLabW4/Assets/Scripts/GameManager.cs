@@ -7,16 +7,17 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
+    //UI
     public Text ScoreText;
     public Text TimerText;
     public Text HighScoreText;
 
+    //constants 
     private const string PLAYER_PREF_HIGHSCORE = "highScore";
     private const string FILE_HIGH_SCORE = "/HighScoreFile.txt";
 
+    //Timer
     private float timer;
-    private float TimeLimit;
-
     public float Timer
     {
         get { return timer; }
@@ -26,9 +27,10 @@ public class GameManager : MonoBehaviour
             TimerText.text = "Time: "+ timer+"s";
         }
     }
-
-    private int score;
+    private float TimeLimit;
     
+    //Score
+    private int score;
     public int Score
     {
         get
@@ -42,10 +44,9 @@ public class GameManager : MonoBehaviour
             HighScore = score;
         }
     }
-
     private int highScore;
-
     public int HighScore
+
     {
         get
         {
