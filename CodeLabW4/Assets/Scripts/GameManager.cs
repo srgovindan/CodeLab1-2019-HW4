@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,9 +10,24 @@ public class GameManager : MonoBehaviour
     public Text TimerText;
     public Text HighScoreText;
 
+    private const string PLAYER_PREF_HIGHSCORE = "highScore";
+    private const string FILE_HIGH_SCORE = "/HighScoreFile.txt";
+
     private float timer;
-    
+    private float TimeLimit;
+
+    public float Timer
+    {
+        get { return timer; }
+        set
+        {
+            timer = value;
+            TimerText.text = "Time: "+ timer+"s";
+        }
+    }
+
     private int score;
+    
     public int Score
     {
         get
@@ -22,7 +38,7 @@ public class GameManager : MonoBehaviour
         {
             score = value;
             ScoreText.text = "Score: " + score;
-            highScore = score;
+            HighScore = score;
         }
     }
 
@@ -40,6 +56,19 @@ public class GameManager : MonoBehaviour
             {
                 highScore = value;
                 HighScoreText.text = "High Score: " + highScore;
+                PlayerPrefs.SetInt(PLAYER_PREF_HIGHSCORE,HighScore);
+
+//                string fullPathToFile = Application.dataPath + FILE_HIGH_SCORE;
+//                
+//                if (File.Exists(fullPathToFile))
+//                {
+//                    File.WriteAllText(fullPathToFile,"High Score: " + HighScore);
+//                    Debug.Log("The save file exists!");
+//                }
+//                else
+//                {
+//                    Debug.Log("The save file don't exist, yo.");
+//                }
             }
         }
     }
@@ -58,13 +87,19 @@ public class GameManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
+        Score = 0;
+        HighScore = PlayerPrefs.GetInt(PLAYER_PREF_HIGHSCORE,10);
+        
+        string fullPathToFile = Application.dataPath + FILE_HIGH_SCORE;
+        File.ReadAllText(fullPathToFile);
     }
 
 
     private void Update()
     {
-        timer += Time.deltaTime;
-        if (timer < 0)
+        Timer += Time.deltaTime;
+        if (Timer > TimeLimit)
         {
             _GameOver();
         }

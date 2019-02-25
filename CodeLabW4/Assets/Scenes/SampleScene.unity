@@ -182,7 +182,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Time: 30s'
+  m_Text: 'Time:'
 --- !u!222 &135274079
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -683,7 +683,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Score: 0'
+  m_Text: 'Score:'
 --- !u!222 &1365773015
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -722,7 +722,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ScoreText: {fileID: 1365773014}
-  TimerText: {fileID: 0}
+  TimerText: {fileID: 135274078}
+  HighScoreText: {fileID: 1687008303}
 --- !u!4 &1598635390
 Transform:
   m_ObjectHideFlags: 0
@@ -807,7 +808,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'High Score: 0'
+  m_Text: 'High Score:'
 --- !u!222 &1687008304
 CanvasRenderer:
   m_ObjectHideFlags: 0
