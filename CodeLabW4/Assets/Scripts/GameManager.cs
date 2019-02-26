@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
     public Text ScoreText;
     public Text TimerText;
     public Text HighScoreText;
+    public Text GameOverText;
 
     //constants 
     private const string PLAYER_PREF_HIGHSCORE = "highScore";
@@ -24,10 +25,10 @@ public class GameManager : MonoBehaviour
         set
         {
             timer = value;
-            TimerText.text = "Time: "+ timer+"s";
+            TimerText.text = "Time: "+ timer.ToString("F0")+"s";
         }
     }
-    private float TimeLimit;
+    public float TimeLimit;
     
     //Score
     private int score;
@@ -46,7 +47,6 @@ public class GameManager : MonoBehaviour
     }
     private int highScore;
     public int HighScore
-
     {
         get
         {
@@ -92,11 +92,13 @@ public class GameManager : MonoBehaviour
         HighScore = Int32.Parse(scoreSplit[2]);
     }
 
-
     private void Update()
     {
-        Timer += Time.deltaTime;
-        if (Timer > TimeLimit)
+        if (Timer < TimeLimit)
+        {
+            Timer += Time.deltaTime;
+        }
+        else
         {
             _GameOver();
         }
@@ -106,5 +108,6 @@ public class GameManager : MonoBehaviour
     void _GameOver()
     {
         //do game over things
+        GameOverText.text = "Game Over!";
     }
 }
