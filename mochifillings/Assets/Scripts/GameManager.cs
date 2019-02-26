@@ -66,12 +66,12 @@ public class GameManager : MonoBehaviour
 
     void LoadNextLevel()
     {
-//        if (OnigiriContainer == null)
-//        {
-//            OnigiriContainer = GameObject.Find("OnigiriContainer");
-//            Debug.Log(OnigiriContainer);
-//        }
-        if (OnigiriContainer.transform.childCount < 1)
+        if (OnigiriContainer == null)
+        {
+            OnigiriContainer = GameObject.Find("OnigiriContainer");
+            Debug.Log(OnigiriContainer);
+        }
+        else if (OnigiriContainer.transform.childCount < 1)
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
