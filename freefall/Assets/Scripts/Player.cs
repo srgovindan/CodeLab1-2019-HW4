@@ -11,10 +11,12 @@ public class Player : MonoBehaviour
     public KeyCode LeftKey;
     public KeyCode RightKey;
     public KeyCode RunKey;
+    public KeyCode JumpKey;
 
     private float moveSpeed;
     private float walkSpeed=0.1f;
     private float runSpeed=0.3f;
+    private float jumpForce=10f;
     
     
     private Rigidbody rb;
@@ -32,6 +34,9 @@ public class Player : MonoBehaviour
 
     void Move()
     {
+        //jump
+        if (Input.GetKey(JumpKey)){rb.AddForce(Vector3.up*jumpForce);}
+        
         //check if walk or run
         if (Input.GetKey(RunKey)){moveSpeed = runSpeed;}
         else{moveSpeed = walkSpeed;}
